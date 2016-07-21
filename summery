@@ -1,0 +1,31 @@
+chapter 1
+
+chapter 2
+
+chapter 3
+
+
+Major number shows the driver that associated by the device by demonstrating the number of device class.
+
+Minor number shows the number of device in the class obtained by major number.
+
+dev_t type defined in <linux/types.h> used by kernel to obtain major and minor numbers in one object.
+
+Macros defined in <linux/kdev_t.h> for change the dev_t type to integer minor and major numbers:
+	MAJOR(dev_t dev);
+	MINOR(dev_t dev);
+
+Macro defined in <linux/kdev_t.h> for change integer minor and major numbers to dev_t object:
+	MKDEV(int major, int minor);
+
+Allocating device numbers for char device knowing the major number:
+	int register_chrdev_region(dev_t first, unsigned int firstminor, unsigned int count, char* name);
+
+Allocate device number by kernel and return it(Often we don't know what major number shall we use for our device so we use this function instead of register_chrdev_region):
+	int allocate_chrdev_register(dev_t *dev, unsigned int firstminor, unsigned int count, char* name);
+
+Free up device numbers regardless of the way that have been allocated:
+	void unregister_chrdev_region(dev_t first, 
+
+
+
